@@ -1,0 +1,10 @@
+# Cypress environment variables
+cypress.env.json
+
+#from examples
+cypress/e2e/1-getting-started
+cypress/e2e/2-advanced-examples
+
+#node
+/node_modules
+
