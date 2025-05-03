@@ -5,6 +5,11 @@ cypress.env.json
 cypress/e2e/1-getting-started
 cypress/e2e/2-advanced-examples
 
-#node
-/node_modules
+# Dependency directories
+node_modules/
 
+# Optional: Also exclude other common files
+.env
+.DS_Store
+dist/
+coverage/
