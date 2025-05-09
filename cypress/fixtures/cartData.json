@@ -1,0 +1,23 @@
+{
+    "Products" :
+    {
+        "laptop": "MacBook Air",
+        "phone": "iPhone",
+        "camera": "Canon EOS 5D",
+        "mp3Player": "iPod Nano",
+        "monitor": "Samsung SyncMaster 941BW",
+        "searchByMacbook": "MacBook"
+    }, 
+   "FeaturedProducts" :
+   {
+    "firstItem": 
+    {
+        "itemNo": 1,
+        "itemName": "MacBook",
+        "itemPrice": "602.00",
+        "itemPriceminusTax": "500"
+    },
+    "secondItem": 2,
+    "thirdItem": 3
+   }
+}

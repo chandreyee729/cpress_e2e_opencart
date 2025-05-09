@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "test:registration": "npx cypress run --spec cypress/e2e/register_new_user.cy.js",
+    "test:loginAndAccountValidations": "npx cypress run --spec cypress/e2e/login_and_account_validation.cy.js",
+    "test:addToCart": "npx cypress run --spec cypress/e2e/add_to_cart_from_homepage.cy.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +21,14 @@
   "description": "",
   "dependencies": {
     "cypress": "^14.3.2"
+  },
+  "comments": {
+    "runHeadless": "in terminal : npm run test:addToCart"
+  },
+  "devDependencies": {
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.2.0"
   }
 }

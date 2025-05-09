@@ -3,8 +3,11 @@ export class LoginPage {
     locators = {
         email: '#input-email',
         password: '#input-password',
-        alert: '.alert.alert-danger.alert-dismissible',
+        warningAlert: '.alert.alert-danger.alert-dismissible',
+        successAlert: '.alert.alert-success.alert-dismissible',
         submit: '.btn.btn-primary',
+        forgotten_password:'a[href$="account/forgotten"]',
+        page_content:'#content'
     }
 
    enterEmail(email){
@@ -15,18 +18,33 @@ export class LoginPage {
     cy.get(this.locators.password).type(password)
    }
 
-   clickSubmit(){
-    cy.addTestAttrByText(this.locators.submit, 'Login', 'cy-test', 'login');
-        cy.get('[cy-test = login]').click()
+   submit(){
+    cy.addTestAttrByText(this.locators.submit, 'Login','cy-test', 'login');
+       return cy.get('[cy-test = login]')
    }
 
-   getWarningText(){
-    cy.addTestAttr(this.locators.alert, 'cy-test', 'warning-alert');
-    return cy.get('[cy-test=warning-alert]').invoke('text')
+   continue(){
+    cy.addTestAttrByText(this.locators.submit, 'Continue','cy-test', 'continue');
+       return cy.get('[cy-test = continue]')
    }
 
-   clickForgottenPassword(){
-    cy.addTestAttr('a', 'cy-test', 'forgot-password');
-    cy.get('[cy-test=forgot-password]').click()
+   warningAlert(){
+    cy.addTestAttr(this.locators.warningAlert, 'cy-test', 'warning-alert');
+    return cy.get('[cy-test=warning-alert]')
+   }
+
+   successAlert(){
+    cy.addTestAttr(this.locators.successAlert, 'cy-test', 'success-alert');
+    return cy.get('[cy-test=success-alert]', {timeout :5000})
+   }
+
+   forgottenPassword(){
+    cy.addTestAttr(this.locators.forgotten_password, 'cy-test', 'forgot-password_link');
+    return cy.get('[cy-test=forgot-password_link]').first()
+   }
+
+   pageContent(){
+    cy.addTestAttr(this.locators.page_content, 'cy-test', 'page_content');
+    return cy.get('[cy-test=page_content]')
    }
 }

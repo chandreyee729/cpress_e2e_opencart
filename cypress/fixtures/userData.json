@@ -1,0 +1,27 @@
+{
+    "newUser": 
+    {
+        "firstName": "John",
+        "lastName": "Snow",
+        "telephone": "1966876456",
+        "password": "abc@123!"
+    },
+    "registeredUser":
+    {
+        "email": "abc_test_cypress@mailinator.com",
+        "password": "abc@123",
+        "firstName": "Test",
+        "lastName": "abc",
+        "telephone": "0171752564679"
+    },
+    "unregisteredUser":
+    {
+        "unRegisteredEmail": "abc@qqmail.com",
+        "unRegisteredPassword": "abbcde"
+    },
+
+    "recoverAccount": 
+    {
+        "registeredEmail" :"abc_test_cypress@mailinator.com"
+    }
+}
