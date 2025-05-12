@@ -6,7 +6,7 @@ module.exports = defineConfig({
   reporterOptions: {
     charts: true,
     reportPageTitle: 'My Test Report',
-    reportDir: 'cypress/reports',
+    reportDir: 'cypress/reports/html',
     inlineAssets: true,
     overwrite: true,
     html: true,
