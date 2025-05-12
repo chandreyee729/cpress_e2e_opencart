@@ -13,3 +13,5 @@ cypress/e2e/2-advanced-examples/
 .DS_Store
 dist/
 coverage/
+cypress/videos/
+cypress/screenshots/
