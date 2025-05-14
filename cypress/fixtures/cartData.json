@@ -10,14 +10,38 @@
     }, 
    "FeaturedProducts" :
    {
-    "firstItem": 
+     "firstItem": 
     {
         "itemNo": 1,
         "itemName": "MacBook",
         "itemPrice": "602.00",
-        "itemPriceminusTax": "500"
+        "itemPriceminusTax": "500",
+        "productId" : 43,
+        "productModel": "product 16"
     },
-    "secondItem": 2,
-    "thirdItem": 3
+     "secondItem": 
+    {
+        "itemNo": 2,
+        "itemName": "iPhone",
+        "itemPrice": "123.20",
+        "itemPriceminusTax": "500",
+        "productId" : 40,
+        "productModel": "product 11"
+
+    },
+     "thirdItem": 3
+   },
+   "CartProducts" :
+   {
+    "firstItemInCart": 
+    {
+        "itemIndexinCart": 1,
+        "itemName": "iPhone",
+        "itemPrice": "123.20",
+        "itemPriceminusTax": "101.00",
+        "productId" : 40,
+        "productModel": "product 11"
+    }
    }
+
 }

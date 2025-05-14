@@ -10,6 +10,9 @@
 //
 //
 // -- This is a parent command --
+import routes from '../pages/routes';
+const {cart_url, login_url, add_to_cart_url, remove_from_cart_url} = routes;
+
 Cypress.Commands.add('addTestAttr', (selector, attrName, attrValue) => {
   cy.get(selector).invoke('attr', attrName, attrValue);
 });
@@ -21,7 +24,7 @@ Cypress.Commands.add('addTestAttrByText', (selector, text, attrName, attrValue) 
 });
 
 Cypress.Commands.add('login', (email, password) => {
-  cy.visit(Cypress.env('URL_LOGIN'));
+  cy.visit(login_url);
   cy.get('#input-email').type(email);
   cy.get('#input-password').type(password, {
     log: false,        // Won't show in command log
@@ -31,7 +34,8 @@ Cypress.Commands.add('login', (email, password) => {
 })
 
 Cypress.Commands.add('clearCart', () => {
-  cy.addTestAttr('.btn.btn-inverse.btn-block.btn-lg.dropdown-toggle', 'cy-test', 'cart-item-shortcut');
+  const cart_shortcut ='.btn.btn-inverse.btn-block.btn-lg.dropdown-toggle';
+  cy.addTestAttr(cart_shortcut, 'cy-test', 'cart-item-shortcut');
   const removeCartItemElement = 'button[title="Remove"][onclick^="cart.remove"]';
   cy.get('[cy-test=cart-item-shortcut]').click();
   cy.get('body').then(($body) => {
@@ -52,7 +56,7 @@ Cypress.Commands.add('clearCart', () => {
         .then(() => {
           // Wait for the item to be fully removed
           cy.wait(1000);
-          cy.get('[cy-test=cart-item-shortcut]').click();
+          cy.get(cart_shortcut).click();
           removeItemsSequentially(remainingItems - 1);
         });
     };
@@ -60,7 +64,47 @@ Cypress.Commands.add('clearCart', () => {
   });
 });
 
-/*   Cypress.Commands.add('functionName', (email, password) => {
+Cypress.Commands.add('loginByApi', (email, password) => {
+  cy.request({
+    method: 'POST',
+    url: login_url,
+    form: true,
+    body: {
+      email: email,
+      password: password,
+      followRedirect: false
+    }
+  }).then((response) => {
+    //expect(response.status).to.eq(302);   // Redirect after login
+    //expect(response.redirectedToUrl).to.include('/account/account'); 
+    cy.log(`${email} logged in successfully.`)
+  });
+});
+
+Cypress.Commands.add('navigationByApi', (page) => {
+      cy.request(page).then((response) => {
+        expect(response.status).to.eq(200);
+        expect(response.headers['content-type']).to.include('text/html');
+        cy.log(`${page} loaded successfully.`)
+  });
+})
+
+Cypress.Commands.add('addToCartByApi', (productId, quantity) => {
+  cy.request({
+    method: 'POST',
+    url: add_to_cart_url,
+    form: true,
+    body: {
+      product_id: productId,    
+      quantity: quantity
+    }
+  }).then((response) => {
+    expect(response.status).to.eq(200);
+    expect(response.body.success).to.exist; 
+  });
+})
+
+/*   Cypress.Commands.add('functionName', () => {
     
   })  */
 

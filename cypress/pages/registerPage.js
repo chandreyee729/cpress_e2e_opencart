@@ -8,11 +8,12 @@ export class registerPage {
     password: '#input-password',
     confirmPassword: '#input-confirm',
     policyCheck: 'input[type=checkbox]',
-    continueButton:'.btn.btn-primary'
+    continueButton:'.btn.btn-primary',
+    continueToAccount: 'a.btn.btn-primary'
     }
     
     confirmPageHeader(){
-        cy.get(this.locators.pageHeader).contains('Register Account')
+        return cy.get(this.locators.pageHeader)
     }
 
     inputFirstName(firstName){
@@ -32,10 +33,14 @@ export class registerPage {
         cy.get(this.locators.confirmPassword).type(password)
     }
     checkPolicy(){  
-        cy.get(this.locators.policyCheck).check()
+        return cy.get(this.locators.policyCheck)
     }
-    clickContinue(){
+    continue(){
         cy.addTestAttrByText(this.locators.continueButton, 'Continue', 'cy-test', 'continue-registration');
-        cy.get('[cy-test = continue-registration]').click()
+        return cy.get('[cy-test = continue-registration]')
+    }
+    continueToAccount(){
+        cy.addTestAttrByText(this.locators.continueToAccount, 'Continue', 'cy-test', 'continue-to-account');
+        return cy.get('[cy-test = continue-to-account]')
     }
 }

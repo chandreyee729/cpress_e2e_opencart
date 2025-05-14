@@ -2,7 +2,9 @@ import { LoginPage } from '../pages/loginPage';
 const login = new LoginPage();
 import userData from '../fixtures/userData.json';
 import {command} from '../support/commands' 
+import routes from '../pages/routes'
 
+const {login_url} = routes;
 const registeredEmail = userData.registeredUser.email;
 const password = userData.registeredUser.password;
 const unRegEmail = `cypress.snow${Date.now()}@abc.com`;;
@@ -12,7 +14,7 @@ const recoverUserEmail = userData.recoverAccount.registeredEmail;
 describe('Login to account', ( ) => {
 
     beforeEach(() => {
-        cy.visit(Cypress.env('URL_LOGIN'));
+        cy.visit(login_url);
     })
 
     it(`Registered user ${registeredEmail} logs in successfully to account`, () => {
@@ -43,7 +45,7 @@ describe('Login to account', ( ) => {
         login.pageContent().should('contain.text','Forgot Your Password?');
         login.enterEmail(recoverUserEmail);
         login.continue().click();
-            cy.url().should('include', Cypress.env('URL_LOGIN')).then(()=>
+            cy.url().should('include', login_url).then(()=>
         login.successAlert().invoke('text').should('contain', 'An email with a confirmation link has been sent your email address.'));
         cy.log("App is not setup to reset password for test mails generators");    
         
@@ -57,7 +59,7 @@ describe('Login to account', ( ) => {
             login.warningAlert().invoke('text').should('contain', 'Warning: The E-Mail Address was not found in our records, please try again!');
     })
 
-    it('Fail this test on purpose to show failure status and records', () => {
+    it.skip('Fail this test on purpose to show failure status and records', () => {
         login.enterEmail(registeredEmail);
         login.enterPassword(unRegPass);
         login.submit().should('contain','Login');
@@ -65,5 +67,9 @@ describe('Login to account', ( ) => {
         cy.get('#content').contains('My Account');
         cy.get('#content').contains('My Orders');
     });
+
+    after(() => {
+        cy.captureConsoleLogs();
+    })
 
 })

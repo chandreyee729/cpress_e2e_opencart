@@ -32,7 +32,7 @@ describe('Add to Cart successfully',() => {
         cy.log(`The featured ${featuredItemName} of price ${featuredItemPrice} has been successfully added to cart`)
     })
 
-    it(`Search for ${macbook}s and first item to cart successfully from Homepage`, () => {
+    it(`Search for ${macbook}s and add first item to cart successfully from Homepage`, () => {
         const firstSearchedItem = 1;
         myaccountPage.homePage().click();
         productPage.enterSearchText(macbook);
