@@ -22,7 +22,8 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6.1.0
         with:
-         command: npx cypress run --env grepTags=new_feature
+          install: false
+          command: npx cypress run --env grepTags=new_feature
 
       - name: Cypress Test Report
         if: always()
