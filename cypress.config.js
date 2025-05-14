@@ -1,6 +1,6 @@
 const { defineConfig } = require('cypress');
 const mochawesome = require('cypress-mochawesome-reporter/plugin');
-const cypressGrep = require('cypress-grep/src/plugin'); 
+const cypressGrep = require('cypress-grep/src/plugin');
 
 module.exports = defineConfig({
   reporter: 'cypress-mochawesome-reporter',
@@ -27,7 +27,8 @@ module.exports = defineConfig({
   },
 
   env: {
-    grepUntagged: true,
+    grepFilterSpecs: true,
+    grepOmitFiltered: true,
     URL_LOGIN: 'https://naveenautomationlabs.com/opencart/index.php?route=account/login',
     URL_REGISTER: 'https://naveenautomationlabs.com/opencart/index.php?route=account/register',
     URL_HOMEPAGE: 'https://naveenautomationlabs.com/opencart/'

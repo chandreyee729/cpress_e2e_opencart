@@ -13,7 +13,7 @@ console.log(email);
 const telephone = userData.newUser.telephone;
 const password = userData.newUser.password
 
-describe('Register User successfully',{ tags: ['smoke'] }, ()=> {
+describe('Register User successfully', ()=> {
 
     it('Go to Registration Page', () => {
         cy.visit(login_url);
@@ -24,7 +24,7 @@ describe('Register User successfully',{ tags: ['smoke'] }, ()=> {
         });
     }) 
 
-    it('Enter Registration details and continue', () => {
+    it('Enter Registration details and continue',{tags: ['smoke']} ,() => {
         cy.visit(register_url);
         cy.url().should('include', 'register');
         register.inputFirstName(firstName);

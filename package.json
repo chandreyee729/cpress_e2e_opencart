@@ -7,6 +7,7 @@
     "test:loginAndAccountValidations": "npx cypress run --spec cypress/e2e/login_and_account_validation.cy.js",
     "test:addToCart": "npx cypress run --spec cypress/e2e/add_to_cart_from_homepage.cy.js",
     "test:cartOperations": "npx cypress run --spec cypress/e2e/cart_operations.cy.js",
+    "test:securedLogin": "npx cypress run --spec cypress/e2e/secured_login_test.cy.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
