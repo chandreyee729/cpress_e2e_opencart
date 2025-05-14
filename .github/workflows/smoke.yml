@@ -1,4 +1,4 @@
-name: End-to-end tests
+name: Smoke tests
 on: push
 jobs:
   cypress-run:
@@ -21,7 +21,7 @@ jobs:
         uses: cypress-io/github-action@v6.1.0
         with:
          install: false 
-         command: npx cypress run --env grepTags=smoke
+         command: npx cypress run --env grepTags=smoke,grepOmitFiltered=true,grepFilterSpecs=true
 
       - name: Cypress Test Report
         if: always()
