@@ -34,7 +34,7 @@ describe('Manage Shopping Cart Successfully', () => {
         cy.visit(cart_url)
     })
 
-    it.skip('Go to Shopping Cart with items in Cart ', () => {
+    it('Go to Shopping Cart with items in Cart ', () => {
         cy.visit(homepage_url);
         cart.shoppingCart().click();
         cart.pageContent().should('contain', "Shopping Cart");
