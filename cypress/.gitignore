@@ -15,3 +15,5 @@ dist/
 coverage/
 cypress/videos/
 cypress/screenshots/
+cypress/reports/html/videos
+cypress/reports/html/screenshots
