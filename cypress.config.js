@@ -1,5 +1,6 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress');
 const mochawesome = require('cypress-mochawesome-reporter/plugin');
+const cypressGrep = require('cypress-grep/src/plugin'); 
 
 module.exports = defineConfig({
   reporter: 'cypress-mochawesome-reporter',
@@ -19,10 +20,12 @@ module.exports = defineConfig({
     baseUrl: 'https://naveenautomationlabs.com/opencart',
     specPattern: "cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",
     setupNodeEvents(on, config) {
-      // implement node event listeners here
       mochawesome(on);
+      cypressGrep(config); 
+      return config;
     },
   },
+
   env: {
     URL_LOGIN: 'https://naveenautomationlabs.com/opencart/index.php?route=account/login',
     URL_REGISTER: 'https://naveenautomationlabs.com/opencart/index.php?route=account/register',

@@ -1,0 +1,29 @@
+name: End-to-end tests
+on: push
+jobs:
+  cypress-run:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      # Install npm dependencies, cache them correctly
+      # and run  all Cypress tests 
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6.1.0
+        with:
+         command: npx cypress run 
+
+      - name: Cypress Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+           name: E2E Test Execution Report
+           path: cypress/reports/html   

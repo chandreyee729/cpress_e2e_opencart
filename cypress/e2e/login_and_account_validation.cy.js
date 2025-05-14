@@ -17,7 +17,7 @@ describe('Login to account', ( ) => {
         cy.visit(login_url);
     })
 
-    it(`Registered user ${registeredEmail} logs in successfully to account`, () => {
+    it(`Registered user ${registeredEmail} logs in successfully to account`, { tags: ['smoke'] },() => {
         login.enterEmail(registeredEmail);
         login.enterPassword(password);
         login.submit().should('contain','Login');

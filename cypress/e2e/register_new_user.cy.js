@@ -13,7 +13,7 @@ console.log(email);
 const telephone = userData.newUser.telephone;
 const password = userData.newUser.password
 
-describe('Register User successfully', ()=> {
+describe('Register User successfully',{ tags: ['smoke'] }, ()=> {
 
     it('Go to Registration Page', () => {
         cy.visit(login_url);
