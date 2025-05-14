@@ -5,8 +5,8 @@ import { CartPage } from '../pages/cartPage';
 
 const cart = new CartPage();
 const {homepage_url, cart_url} = routes;
-const registeredEmail = userData.registeredUser.email;
-const password = userData.registeredUser.password;
+const registeredEmail = userData.registeredUser_2.email;
+const password = userData.registeredUser_2.password;
 const cart_product_id = cartData.CartProducts.firstItemInCart.productId;
 const cart_product_name = cartData.CartProducts.firstItemInCart.itemName;
 const cart_product_model = cartData.CartProducts.firstItemInCart.productModel;
