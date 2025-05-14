@@ -1,8 +1,8 @@
-import { LoginPage } from '../pages/loginPage';
+import { LoginPage } from '../../pages/loginPage';
 const login = new LoginPage();
-import userData from '../fixtures/userData.json';
-import {command} from '../support/commands' 
-import routes from '../pages/routes'
+import userData from '../../fixtures/userData.json';
+import {command} from '../../support/commands' 
+import routes from '../../pages/routes'
 
 const {login_url} = routes;
 const registeredEmail = userData.registeredUser.email;

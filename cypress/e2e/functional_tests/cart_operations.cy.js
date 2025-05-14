@@ -1,7 +1,7 @@
-import routes from '../pages/routes'
-import userData from '../fixtures/userData.json';
-import cartData from '../fixtures/cartData.json'
-import { CartPage } from '../pages/cartPage';
+import routes from '../../pages/routes'
+import userData from '../../fixtures/userData.json';
+import cartData from '../../fixtures/cartData.json'
+import { CartPage } from '../../pages/cartPage';
 
 const cart = new CartPage();
 const {homepage_url, cart_url} = routes;

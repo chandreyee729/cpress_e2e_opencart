@@ -1,9 +1,9 @@
-import { registerPage } from "../pages/registerPage";
+import { registerPage } from "../../pages/registerPage";
 const register = new registerPage();
-import { AccountPage } from "../pages/accountPage";
+import { AccountPage } from "../../pages/accountPage";
 const myAccount = new AccountPage();
-import userData from '../fixtures/userData.json';
-import routes from '../pages/routes'
+import userData from '../../fixtures/userData.json';
+import routes from '../../pages/routes'
 
 const {login_url,register_url, account_url, account_created_url} = routes;
 const firstName = userData.newUser.firstName;

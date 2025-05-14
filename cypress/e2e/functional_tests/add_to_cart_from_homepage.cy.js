@@ -1,9 +1,9 @@
-import { ProductPage } from '../pages/productPage';
+import { ProductPage } from '../../pages/productPage';
 const productPage = new ProductPage();
-import { AccountPage } from '../pages/accountPage';
+import { AccountPage } from '../../pages/accountPage';
 const myaccountPage = new AccountPage();
-import userData from '../fixtures/userData.json';
-import cartData from '../fixtures/cartData.json';
+import userData from '../../fixtures/userData.json';
+import cartData from '../../fixtures/cartData.json';
 
 const registeredEmail = userData.registeredUser.email;
 const password = userData.registeredUser.password;
