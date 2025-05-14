@@ -20,6 +20,7 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6.1.0
         with:
+         install: false 
          command: npx cypress run --env grepTags=smoke
 
       - name: Cypress Test Report

@@ -23,7 +23,7 @@ jobs:
         uses: cypress-io/github-action@v6.1.0
         with:
           install: false
-          command: npx cypress run --env grepTags=new_feature
+          command: npx cypress run --env grepTags=new_feature,grepOmitFiltered=true,grepFilterSpecs=true
 
       - name: Cypress Test Report
         if: always()
