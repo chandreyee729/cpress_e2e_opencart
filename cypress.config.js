@@ -27,6 +27,7 @@ module.exports = defineConfig({
   },
 
   env: {
+    grepUntagged: true,
     URL_LOGIN: 'https://naveenautomationlabs.com/opencart/index.php?route=account/login',
     URL_REGISTER: 'https://naveenautomationlabs.com/opencart/index.php?route=account/register',
     URL_HOMEPAGE: 'https://naveenautomationlabs.com/opencart/'

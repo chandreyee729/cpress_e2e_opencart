@@ -14,8 +14,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: |
-          rm -rf node_modules package-lock.json
+        run: 
           npm install --legacy-peer-deps
 
       - name: Run Cypress tests

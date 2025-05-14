@@ -56,7 +56,7 @@ describe('Manage Shopping Cart Successfully', () => {
         cart.productTotalPrice(cart_index).invoke('text').should('contain',total_product_price);
     })
 
-    it(`Update order item quantity for ${cart_product_name} to ${update_product_quantity} in Shopping Cart at index ${cart_index}`,{ tags: ['smoke'] }, () => {
+    it(`Update order item quantity for ${cart_product_name} to ${update_product_quantity} in Shopping Cart at index ${cart_index}`,{ tags: ['smoke']['new_feature'] }, () => {
         cart.pageVisit();
         cart.productQuantity(cart_index).should('have.value', add_setup_product_quantity);
         cart.productUnitPrice(cart_index).invoke('text').should('contain',cart_product_unitPrice);
