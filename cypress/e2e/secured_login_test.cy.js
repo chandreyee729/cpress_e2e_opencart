@@ -3,7 +3,6 @@ const login = new LoginPage();
 import userData from '../fixtures/userData.json';
 import {command} from '../support/commands' 
 import routes from '../pages/routes'
-import cypress from 'cypress';
 
 const {login_url} = routes;
 const registeredEmail = Cypress.env('email');
@@ -14,7 +13,7 @@ describe('Login to a secured account from Github Actions Secrets Workflow', ( ) 
     beforeEach(() => {
         cy.visit(login_url);
         cy.log(`email is ${registeredEmail}`)
-        cy.log(Cypress.env())
+        cy.log(JSON.stringify(Cypress.env()))
     })
 
     it(`Github Actions Secrets overrides user password over Cypresss Env for ${registeredEmail}`, { tags: ['github_secret'] },() => {
