@@ -30,6 +30,7 @@ jobs:
            path: cypress/reports/html   
 
       - name: Prepare Workflow Specific Report 
+        if: always()
         run: |
                mkdir -p public/ci
                cp -r cypress/reports/html/index.html public/ci/index.html
@@ -38,6 +39,7 @@ jobs:
          # publishes report at https://chandreyee729.github.io/cpress_e2e_opencart/ci/
 
       - name: Deploy Data Report to GitHub Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
            github_token: ${{ secrets.GITHUB_TOKEN }}

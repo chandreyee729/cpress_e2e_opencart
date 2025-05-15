@@ -28,16 +28,9 @@ jobs:
         with:
            name: E2E Test Execution Report
            path: cypress/reports/html   
-      
-      - name: Prepare Workflow Specific Report 
-        run: |
-               mkdir -p public/
-               cp -r cypress/reports/html/index.html public/index.html
-               cp -r cypress/reports/* public/
-               touch public/.nojekyll
-         # publishes report at https://chandreyee729.github.io/cpress_e2e_opencart/
 
       - name: Deploy Report to GitHub Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

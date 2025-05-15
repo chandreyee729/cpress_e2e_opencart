@@ -16,8 +16,8 @@
     },
     "registeredUser_2":
     {
-        "email": "def_test_cypress@mailinator.com",
-        "password": "def@123",
+        "email": "mon_test_cypress@mailinator.com",
+        "password": "mon@123",
         "firstName": "def",
         "lastName": "Test",
         "telephone": "015175674669"
