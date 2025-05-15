@@ -33,7 +33,7 @@ jobs:
       - name: Prepare Workflow Specific Report 
         run: |
             mkdir -p public/smoke
-            cp -r reports/* public/
+            cp -r cypress/reports/* public/
             cp public/index.html public/smoke/index.html
             touch public/.nojekyll
 
