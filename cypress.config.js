@@ -24,6 +24,7 @@ module.exports = defineConfig({
       cypressGrep(config); 
       return config;
     },
+    experimentalRunAllSpecs : true
   },
 
   env: {
