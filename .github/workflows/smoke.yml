@@ -33,15 +33,15 @@ jobs:
       - name: Prepare Workflow Specific Report 
         run: |
             mkdir -p public/smoke
-            cp -r cypress/reports/html/index.html public/index.html
-            cp -r cypress/reports/* public/
+            cp -r cypress/reports/html/index.html public/smoke/index.html
+            cp -r cypress/reports/* public/smoke
             touch public/.nojekyll
-
+      # publishes report at https://chandreyee729.github.io/cpress_e2e_opencart/smoke/
         
       - name: Deploy Data Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          destination_dir: smoke    # publishes report at https://chandreyee729.github.io/cpress_e2e_opencart/smoke/
+          
             
