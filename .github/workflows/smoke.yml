@@ -29,3 +29,11 @@ jobs:
         with:
            name: Smoke Test Execution Report
            path: cypress/reports/html   
+        
+      - name: Deploy Data Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          destination_dir: smoke
+            
