@@ -29,6 +29,14 @@ jobs:
         with:
            name: Smoke Test Execution Report
            path: cypress/reports/html   
+
+      - name: Prepare Workflow Specific Report 
+        run: |
+            mkdir -p public/smoke
+            cp -r reports/* public/
+            cp public/index.html public/smoke/index.html
+            touch public/.nojekyll
+
         
       - name: Deploy Data Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
