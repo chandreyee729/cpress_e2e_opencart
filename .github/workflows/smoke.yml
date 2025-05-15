@@ -35,7 +35,7 @@ jobs:
         run: |
             mkdir -p public/smoke
             cp -r cypress/reports/html/index.html public/smoke/index.html
-            cp -r cypress/reports/* public/smoke
+            cp -r cypress/reports/* public/smoke/
             touch public/.nojekyll
       # publishes report at https://chandreyee729.github.io/cpress_e2e_opencart/smoke/
         

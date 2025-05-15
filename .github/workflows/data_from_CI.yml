@@ -34,7 +34,7 @@ jobs:
         run: |
                mkdir -p public/ci
                cp -r cypress/reports/html/index.html public/ci/index.html
-               cp -r cypress/reports/* public/ci
+               cp -r cypress/reports/* public/ci/
                touch public/.nojekyll
          # publishes report at https://chandreyee729.github.io/cpress_e2e_opencart/ci/
 

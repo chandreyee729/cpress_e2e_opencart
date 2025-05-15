@@ -37,7 +37,7 @@ jobs:
         run: |
                mkdir -p public/feature
                cp -r cypress/reports/html/index.html public/feature/index.html
-               cp -r cypress/reports/* public/feature
+               cp -r cypress/reports/* public/feature/
                touch public/.nojekyll
          # publishes report at https://chandreyee729.github.io/cpress_e2e_opencart/feature/     
 
