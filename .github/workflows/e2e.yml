@@ -1,4 +1,4 @@
-name: Feature tests
+name: End-to-end tests
 on: push
 jobs:
   cypress-run:
@@ -7,35 +7,38 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       # Install npm dependencies, cache them correctly
-      # and run all Cypress tests 
+      # and run  all Cypress tests 
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Clean install environment
-        run: rm -rf node_modules package-lock.json    
-      
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6.1.0
         with:
-          install: false
-          command: npx cypress run --env grepTags=new_feature,grepOmitFiltered=true,grepFilterSpecs=true
+         install: false 
+         command: npx cypress run --spec cypress/e2e/functional_tests/*.cy.js 
 
       - name: Cypress Test Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-           name: New Feature Test Execution Report
+           name: E2E Test Execution Report
            path: cypress/reports/html   
+      
+      - name: Prepare Workflow Specific Report 
+        run: |
+               mkdir -p public/
+               cp -r cypress/reports/html/index.html public/index.html
+               cp -r cypress/reports/* public/
+               touch public/.nojekyll
+         # publishes report at https://chandreyee729.github.io/cpress_e2e_opencart/
 
-      - name: Deploy Data Report to GitHub Pages
+      - name: Deploy Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          destination_dir: feature
-              
+          publish_dir:  ./public
