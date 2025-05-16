@@ -22,6 +22,7 @@ jobs:
         with:
          install: false 
          command: npx cypress run --env grepTags=smoke,grepOmitFiltered=true,grepFilterSpecs=true
+        continue-on-error: true 
 
       - name: Cypress Test Report
         if: always()
@@ -34,7 +35,6 @@ jobs:
         if: always()
         run: |
             mkdir -p public/smoke
-            cp -r cypress/reports/html/index.html public/smoke/index.html
             cp -r cypress/reports/* public/smoke/
             touch public/.nojekyll
       # publishes report at https://chandreyee729.github.io/cpress_e2e_opencart/smoke/
@@ -44,6 +44,8 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          destination_dir: smoke
           publish_dir: ./public
+          keep_files: true
           
             

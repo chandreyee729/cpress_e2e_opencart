@@ -28,10 +28,18 @@ jobs:
         with:
            name: E2E Test Execution Report
            path: cypress/reports/html   
-
+       
+      - name: Prepare Root-Level Report
+        if: always()
+        run: |
+          mkdir -p public
+          cp -r cypress/reports/html/* public/
+          touch public/.nojekyll
+          
       - name: Deploy Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir:  ./public
+          keep_files: true
