@@ -30,6 +30,12 @@ jobs:
         with:
            name: Smoke Test Execution Report
            path: cypress/reports/html   
+      
+      - name: Inject Timestamp into Report
+        run: |
+          DATE=$(date "+%Y-%m-%d %H:%M:%S")
+          echo "<div style='margin: 1em 0; font-size: 14px; font-weight: bold;'>Test executed on: $DATE (UTC)</div>" > timestamp.html
+          sed -i 's|<body>|<body>\n'"$(cat timestamp.html)"'|' cypress/reports/html/index.html
 
       - name: Prepare Workflow Specific Report 
         if: always()
