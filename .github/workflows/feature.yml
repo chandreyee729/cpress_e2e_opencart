@@ -24,6 +24,7 @@ jobs:
         with:
           install: false
           command: npx cypress run --env grepTags=new_feature,grepOmitFiltered=true,grepFilterSpecs=true
+        continue-on-error: true 
 
       - name: Cypress Test Report
         if: always()

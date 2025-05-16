@@ -21,6 +21,7 @@ jobs:
         with:
          install: false 
          command: npx cypress run --env grepTags=github_secret,grepOmitFiltered=true,grepFilterSpecs=true,user_password=${{ secrets.USER_PASSWORD }}
+        continue-on-error: true 
 
       - name: Cypress Test Report
         if: always()

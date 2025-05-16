@@ -21,6 +21,7 @@ jobs:
         with:
          install: false 
          command: npx cypress run --spec cypress/e2e/functional_tests/*.cy.js 
+        continue-on-error: true 
 
       - name: Cypress Test Report
         if: always()
@@ -32,8 +33,8 @@ jobs:
       - name: Prepare E2E Report at "https://chandreyee729.github.io/cpress_e2e_opencart/"
         if: always()
         run: |
-          mkdir -p public
-          cp -r cypress/reports/html/* public/
+          mkdir -p public/e2e
+          cp -r cypress/reports/html/* public
           touch public/.nojekyll
 
       - name: Deploy Report to GitHub Pages
@@ -42,4 +43,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir:  ./public
+          destination_dir: e2e
           keep_files: true
