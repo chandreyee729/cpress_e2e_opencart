@@ -1,4 +1,4 @@
-name: Feature tests
+name: New Feature tests
 on: push
 jobs:
   cypress-run:
@@ -32,14 +32,12 @@ jobs:
            name: New Feature Test Execution Report
            path: cypress/reports/html   
 
-      - name: Prepare Workflow Specific Report 
+      - name: Prepare New_Feature Report at "https://chandreyee729.github.io/cpress_e2e_opencart/feature/"
         if: always()
         run: |
-               mkdir -p public/feature
-               cp -r cypress/reports/html/index.html public/feature/index.html
-               cp -r cypress/reports/* public/feature/
-               touch public/.nojekyll
-         # publishes report at https://chandreyee729.github.io/cpress_e2e_opencart/feature/     
+            mkdir -p public/feature
+            cp -r cypress/reports/html/* public/
+            touch public/.nojekyll
 
       - name: Deploy Data Report to GitHub Pages
         if: always()  
@@ -47,4 +45,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+          destination_dir: feature
+          keep_files: true
               

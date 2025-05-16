@@ -30,28 +30,21 @@ jobs:
         with:
            name: Smoke Test Execution Report
            path: cypress/reports/html   
-      
-      - name: Inject Timestamp into Report
-        run: |
-          DATE=$(date "+%Y-%m-%d %H:%M:%S")
-          echo "<div style='margin: 1em 0; font-size: 14px; font-weight: bold;'>Test executed on: $DATE (UTC)</div>" > timestamp.html
-          sed -i 's|<body>|<body>\n'"$(cat timestamp.html)"'|' cypress/reports/html/index.html
 
-      - name: Prepare Workflow Specific Report 
+      - name: Prepare Smoke Report at "https://chandreyee729.github.io/cpress_e2e_opencart/smoke"
         if: always()
         run: |
             mkdir -p public/smoke
             cp -r cypress/reports/html/* public/
             touch public/.nojekyll
-      # publishes report at https://chandreyee729.github.io/cpress_e2e_opencart/smoke/
         
       - name: Deploy Data Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          destination_dir: smoke
           publish_dir: ./public
+          destination_dir: smoke
           keep_files: true
           
             
