@@ -11,13 +11,15 @@
 //
 // -- This is a parent command --
 import routes from '../pages/routes';
-const {cart_url, login_url, add_to_cart_url, remove_from_cart_url} = routes;
+const {cart_url, login_url, add_to_cart_url, remove_from_cart_url, wishlist_info, remove_from_wishlist_url} = routes;
 
 Cypress.Commands.add('addTestAttr', (selector, attrName, attrValue) => {
+  cy.log(`looking for: ${attrValue}`);
   cy.get(selector).invoke('attr', attrName, attrValue);
 });
 
 Cypress.Commands.add('addTestAttrByText', (selector, text, attrName, attrValue) => {
+  cy.log(`looking for: ${attrValue}`);
   cy.contains(selector, text)
     .should('exist') // Ensure element exists
     .invoke('attr', attrName, attrValue);
@@ -37,6 +39,7 @@ Cypress.Commands.add('clearCart', () => {
   const cart_shortcut ='.btn.btn-inverse.btn-block.btn-lg.dropdown-toggle';
   cy.addTestAttr(cart_shortcut, 'cy-test', 'cart-item-shortcut');
   const removeCartItemElement = 'button[title="Remove"][onclick^="cart.remove"]';
+  //cy.intercept('POST', remove_from_cart_url).as('cartRemoval');
   cy.get('[cy-test=cart-item-shortcut]').click();
   cy.get('body').then(($body) => {
     const itemCount = $body.find(removeCartItemElement).length;
@@ -55,7 +58,7 @@ Cypress.Commands.add('clearCart', () => {
         .click()
         .then(() => {
           // Wait for the item to be fully removed
-          cy.wait(1000);
+          //cy.wait('@cartRemoval');
           cy.get(cart_shortcut).click();
           removeItemsSequentially(remainingItems - 1);
         });
@@ -102,11 +105,31 @@ Cypress.Commands.add('addToCartByApi', (productId, quantity) => {
     expect(response.status).to.eq(200);
     expect(response.body.success).to.exist; 
   });
-})
+});
+
+Cypress.Commands.add('clearWishlist', () => {
+
+  cy.request(wishlist_info).then((response) => {
+  const html = Cypress.$(response.body);
+  html.find('a[href*="remove="]').each((index, element) => {
+    const href = Cypress.$(element).attr('href');
+    const productId = href.match(/remove=(\d+)/)[1];
+    cy.log(`Found product_id: ${productId}`);
+    cy.request({
+      method: 'GET',
+      url: `${remove_from_wishlist_url}=${productId}`,
+      followRedirect: true
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+    })
+  });
+  });
+});
+
 
 /*   Cypress.Commands.add('functionName', () => {
-    
-  })  */
+  })    
+  */
 
 Cypress.Commands.add("captureConsoleLogs", () => {
   const logs = [];

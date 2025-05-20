@@ -23,7 +23,14 @@
         "telephone": "015175674669"
     },
 
-
+    "registeredUser_3":
+    {
+        "email": "def_test_cypress@mailinator.com",
+        "password": "def@123",
+        "firstName": "Def",
+        "lastName": "Test",
+        "telephone": "015175674669"
+    },
     "unregisteredUser":
     {
         "unRegisteredEmail": "abc@qqmail.com",

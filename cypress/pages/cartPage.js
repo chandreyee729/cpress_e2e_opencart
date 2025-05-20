@@ -1,6 +1,6 @@
 export class CartPage {
     locators = {
-        shopping_cart: '.fa.fa-shopping-cart',
+        shopping_cart_button: '.fa.fa-shopping-cart',
         pageContent: '#content',
         checkout: '.btn.btn-primary',
         table_header: '.table-responsive table thead tr',
@@ -25,7 +25,7 @@ export class CartPage {
     cartAction(cartIndex) {
         return cy.get(`[cy-test=cart-item-${cartIndex}]`, { timeout: 5000 })
     }
-    //get cart items by index
+    //get cart items by index from the cart table
 
     productImage(cartIndex) {
         return this.cartAction(cartIndex).find('td:nth-child(1) img ');
@@ -63,8 +63,11 @@ export class CartPage {
         return this.cartAction(cartIndex).find('td:nth-child(6)');
     }
 
+    /************************************************************************************/
+    // page elements
+
     shoppingCart() {
-        cy.addTestAttr(this.locators.shopping_cart, 'cy-test', 'shopping-cart');
+        cy.addTestAttr(this.locators.shopping_cart_button, 'cy-test', 'shopping-cart');
         return cy.get('[cy-test=shopping-cart]').first()
     }
 

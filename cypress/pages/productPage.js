@@ -1,17 +1,15 @@
 export class ProductPage{
 
     locators = {
-        searchInput: '.form-control.input-lg',
-        clickSearch: '.btn.btn-default.btn-lg',
         pageContent: '#content',
         productLayout: '.product-layout',
         caption: '.caption',
+        product_name:'.caption a',
         price: '.price',
-        goToCartButton:'.btn.btn-inverse.btn-block.btn-lg.dropdown-toggle',
-        successAlert:'.alert.alert-success.alert-dismissible'
+        successAlert:'div.alert.alert-success.alert-dismissible',
     }
 
-    /* Visits the page and injects dynamic attributes to buttons of the page for multiple products */
+  /* Visits the page and injects dynamic attributes to the each buttons available in each product layout */
     
   pageVisit() {
     this.injectDynamicProductAttributes();
@@ -26,7 +24,7 @@ export class ProductPage{
       });
       return this;
     } 
-  
+
   //product action helper to index products and access indexed buttons 
   productAction(productIndex) {
     return cy.get(`[cy-test=product-${productIndex}]`, { timeout: 5000 })
@@ -38,22 +36,20 @@ export class ProductPage{
   }
 
   addToWishlist(productIndex) {
-    return this.productAction(productIndex).find('button:contains("Wishlist")');
+    return this.productAction(productIndex).find('button[data-original-title="Add to Wish List"]');
   }
 
   compareProduct(productIndex) {
-    return this.productAction(productIndex).find('button:contains("Compare")');
+    return this.productAction(productIndex).find('button[data-original-title="Compare this Product"]');
   }
-/************************************************************************************/
-
+  
   // Get product details
-
   getProducts(){
     return cy.get(`[cy-test*=product-]`)
   }
 
   getProductName(productIndex) {
-    return cy.get(`[cy-test=product-${productIndex}]`).find(this.locators.caption).eq(0).invoke('text');
+    return cy.get(`[cy-test=product-${productIndex}]`).find(this.locators.product_name).eq(0).invoke('text');
   }
 
   getProductPrice(productIndex){
@@ -61,30 +57,17 @@ export class ProductPage{
   }
 
   /************************************************************************************/
-
-  enterSearchText(product){
-    cy.addTestAttr(this.locators.searchInput, 'cy-test', 'search-input');
-    return cy.get('[cy-test=search-input]').type(product);
-  }
-  
-  clickSearch(){
-    cy.addTestAttr(this.locators.clickSearch, 'cy-test', 'search-button');
-    return cy.get('[cy-test=search-button]').click();
-  }
+    // page elements
 
   pageContent(){
     return cy.get(this.locators.pageContent);
   }
 
-  goToCart(){
-    cy.addTestAttr(this.locators.goToCartButton, 'cy-test', 'cart-item-shortcut');
-    return cy.get('[cy-test=cart-item-shortcut]');
-  }
-
   cartSuccessAlert(){
-    cy.addTestAttr(this.locators.successAlert, 'cy-test', 'cart-success-alert');
-    return cy.get('[cy-test=cart-success-alert]',{timeout: 3000});
-  }
+    //cy.addTestAttr(this.locators.successAlert, 'cy-test', 'cart-success-alert');
+    //return cy.get('[cy-test=cart-success-alert]',{timeout: 30000});
+    return cy.get(this.locators.successAlert,{timeout: 3000});
 
+  }
 
 }

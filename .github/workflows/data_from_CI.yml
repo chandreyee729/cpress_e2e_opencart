@@ -1,4 +1,4 @@
-name: Secured tests
+name: Secured User in CI tests
 on: push
 jobs:
   cypress-run:
