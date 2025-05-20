@@ -50,7 +50,7 @@ export class CommonPage{
 
 
   getCartItemName(cartIndex){
-    cy.get(this.locators.cart_product_name, {timeout: 25000}).each(($product_name, index) => {
+    cy.get(this.locators.cart_product_name, {timeout: 5000}).each(($product_name, index) => {
       cy.wrap($product_name).invoke('attr', 'cy-test', `cart_item_name-${index + 1}`)
     });  
     return cy.get(`[cy-test=cart_item_name-${cartIndex}]`).invoke('text');
