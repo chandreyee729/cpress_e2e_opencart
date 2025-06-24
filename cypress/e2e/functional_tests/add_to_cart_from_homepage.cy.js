@@ -25,7 +25,7 @@ describe('Add to Cart successfully', () => {
         myaccountPage.homePage().click();
     })
 
-    it('Add a featured item to cart successfully from Homepage product layouts', () => {
+    it('Should add a featured item to cart successfully from Homepage product layouts', () => {
         productPage.pageVisit();  //injects dynamic attributes for each product layout
         commonLocators.goToCart().invoke('text').then((cartText) => {
             expect(cartText).to.include('0 item(s) - $0.00', 'Cart is not emptied');
@@ -44,7 +44,7 @@ describe('Add to Cart successfully', () => {
         cy.log(`The featured ${featuredItemName} of price ${featuredItemPrice} has been successfully added to cart`);
     });
 
-    it(`Search for ${macbook}s and add first item to cart successfully from Homepage`,{ tags: ['smoke'] }, () => {
+    it(`Should search for ${macbook}s and add first item to cart successfully from Homepage`,{ tags: ['smoke'] }, () => {
         const firstItemIndex = 1;
         const noOfAddedItems = 1;
         commonLocators.enterSearchText(macbook);
@@ -66,7 +66,7 @@ describe('Add to Cart successfully', () => {
         commonLocators.getCartItemName(noOfAddedItems).should('contain',macbook);
         commonLocators.getCartItemAmount(noOfAddedItems).should('contain','$602.00');
     })
-    it('Add a specific searched item to cart successfully from Homepage', () => {
+    it('Should add a specific searched item to cart successfully from Homepage', () => {
         commonLocators.enterSearchText(cartData.Products.laptop);
         commonLocators.clickSearch();
         productPage.pageVisit(); //injects dynamic attributes for each product layout
@@ -77,6 +77,7 @@ describe('Add to Cart successfully', () => {
         productPage.addToCart(1).click();
         productPage.cartSuccessAlert().should('be.visible');
         productPage.cartSuccessAlert().should('contain', ` Success: You have added ${cartData.Products.laptop} to your shopping cart!`)
+        console.log(` Success: You have added ${cartData.Products.laptop} to your shopping cart!`);
     })
 
     after(() => {

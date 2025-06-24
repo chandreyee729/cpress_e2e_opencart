@@ -15,7 +15,7 @@ const password = userData.newUser.password
 
 describe('Register User successfully', ()=> {
 
-    it('Go to Registration Page', () => {
+    it('Should navigate to Registration Page directly', () => {
         cy.visit(login_url);
         cy.get('.well').contains('New Customer').then(() =>{
             register.continue().click();
@@ -24,7 +24,7 @@ describe('Register User successfully', ()=> {
         });
     }) 
 
-    it('Enter Registration details and continue',{tags: ['smoke']} ,() => {
+    it('Should be able to enter User details and complete Registration',{tags: ['smoke']} ,() => {
         cy.visit(register_url);
         cy.url().should('include', 'register');
         register.inputFirstName(firstName);

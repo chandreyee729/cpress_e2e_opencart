@@ -21,13 +21,11 @@
   },
   "homepage": "https://github.com/chandreyee729/cpress_e2e_opencart#readme",
   "description": "",
-  "dependencies": {
-    "cypress": "^14.3.2"
-  },
   "comments": {
     "runHeadless": "in terminal : npm run test:addToCart"
   },
   "devDependencies": {
+    "cypress": "^14.5.0",
     "cypress-grep": "^3.0.4",
     "cypress-mochawesome-reporter": "^3.8.2",
     "cypress-tags": "^1.2.2",

@@ -26,7 +26,7 @@ const tableHeaders = [
     'Total'
   ];
 
-describe('Manage Shopping Cart Successfully', () => {
+describe('Manage Shopping Cart with items in it successfully', () => {
 
     beforeEach(()=> {
         cy.loginByApi(registeredEmail,password);
@@ -34,7 +34,7 @@ describe('Manage Shopping Cart Successfully', () => {
         cy.visit(cart_url)
     })
 
-    it('Go to Shopping Cart with items in Cart ', () => {
+    it('Should go to Shopping Cart with items in Cart ', () => {
         cy.visit(homepage_url);
         cart.shoppingCart().click();
         cart.pageContent().should('contain', "Shopping Cart");
@@ -45,7 +45,7 @@ describe('Manage Shopping Cart Successfully', () => {
           });
     })
 
-    it(`Verify item ${cart_product_name} in Shopping Cart at index ${cart_index} and its other contents`, () => {
+    it(`Should verify item ${cart_product_name} in Shopping Cart at index ${cart_index} and its other contents`, () => {
         cart.pageVisit()
         cart.productImage(cart_index).should('contain.attr', 'src').and('not.be.empty');
         cart.producName(cart_index).invoke('text').should('contain',cart_product_name);
@@ -56,7 +56,7 @@ describe('Manage Shopping Cart Successfully', () => {
         cart.productTotalPrice(cart_index).invoke('text').should('contain',total_product_price);
     })
 
-    it(`Update order item quantity for ${cart_product_name} to ${update_product_quantity} in Shopping Cart at index ${cart_index}`,{ tags: ['new_feature'] }, () => {
+    it(`Should update order item quantity for ${cart_product_name} to ${update_product_quantity} in Shopping Cart at index ${cart_index}`,{ tags: ['new_feature'] }, () => {
         cart.pageVisit();
         cart.productQuantity(cart_index).should('have.value', add_setup_product_quantity);
         cart.productUnitPrice(cart_index).invoke('text').should('contain',cart_product_unitPrice);

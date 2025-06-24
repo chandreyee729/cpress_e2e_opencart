@@ -17,7 +17,7 @@ describe('Login to account', ( ) => {
         cy.visit(login_url);
     })
 
-    it(`Registered user ${registeredEmail} logs in successfully to account`, { tags: ['smoke'] },() => {
+    it(`Should allow Registered user ${registeredEmail} to log in successfully to account`, { tags: ['smoke'] },() => {
         login.enterEmail(registeredEmail);
         login.enterPassword(password);
         login.submit().should('contain','Login');
@@ -26,21 +26,21 @@ describe('Login to account', ( ) => {
         cy.get('#content').contains('My Orders');
     });
     
-    it(`Unregistered user ${unRegEmail} fails to login and encounters error`, () => {
+    it(`Should not allow Unregistered user ${unRegEmail} to login`, () => {
         login.enterEmail(unRegEmail);
         login.enterPassword(unRegPass);
         login.submit().click();
         login.warningAlert().invoke('text').should('contain', 'Warning: No match for E-Mail Address and/or Password.');
     });
 
-    it(`Registered user ${registeredEmail} fails to login and encounters error for entering incorrect password`, () => {
+    it(`Should not allow Registered user ${registeredEmail} to login and after entering incorrect password`, () => {
         login.enterEmail(registeredEmail);
         login.enterPassword(unRegPass);
         login.submit().click();
         login.warningAlert().invoke('text').should('contain', 'Warning: No match for E-Mail Address and/or Password.');
     });
 
-    it(`Registered user ${recoverUserEmail} can trigger mail to recover forgotten password`,() => {
+    it(`Should allow Registered user ${recoverUserEmail} to trigger mail to recover forgotten password`,() => {
         login.forgottenPassword().click();
         login.pageContent().should('contain.text','Forgot Your Password?');
         login.enterEmail(recoverUserEmail);
@@ -51,7 +51,7 @@ describe('Login to account', ( ) => {
         
     })
 
-    it('Unregistered user cannot recover forgotten password',() => {
+    it('Should not allow Unregistered user to recover forgotten password',() => {
         login.forgottenPassword().click();
         login.pageContent().should('contain.text','Forgot Your Password?');
         login.enterEmail(unRegEmail);
@@ -59,7 +59,7 @@ describe('Login to account', ( ) => {
             login.warningAlert().invoke('text').should('contain', 'Warning: The E-Mail Address was not found in our records, please try again!');
     })
 
-    it.skip('Fail this test on purpose to show failure status and records', () => {
+    it('Should Fail this test on purpose to show failure status and records', () => {
         login.enterEmail(registeredEmail);
         login.enterPassword(unRegPass);
         login.submit().should('contain','Login');

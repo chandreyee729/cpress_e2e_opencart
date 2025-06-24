@@ -22,7 +22,7 @@ describe('Add to WishList successfully', () => {
         myaccountPage.homePage().click();
     })
 
-    it(`Search for ${macbook}s and add all items to Wishlist successfully from Homepage`,{ tags: ['smoke'] }, () => {
+    it(`Should Search for ${macbook}s and add all items to Wishlist successfully from Homepage`,{ tags: ['smoke'] }, () => {
         commonLocators.enterSearchText(macbook);
         commonLocators.clickSearch();
         productPage.pageVisit(); //injects dynamic attributes for each product layout
