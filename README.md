@@ -27,7 +27,7 @@ Open cypress: `npx cypress open`
 Headless run: `npx cypress run`
 
 # Reporting
-install packages in reporter is not downloaded:
+install packages if reporter is not downloaded:
 `npm install --save-dev mochawesome mochawesome-merge mochawesome-report-generator`
 `npm install --save-dev cypress cypress-mochawesome-reporter`
 After test execution merge json reports
